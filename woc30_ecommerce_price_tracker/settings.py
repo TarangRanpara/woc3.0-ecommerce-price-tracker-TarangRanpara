@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'kn*1beux3h*48cg+rc=4k3%uv_lnu(+qpxb7_%@@-=$8y-s13i'
+SECRET_KEY = 'Use_Your_own_key_here'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'details_scrapper_app.apps.DetailsScrapperAppConfig',
+    'details_scrapper_app'
 ]
 
 MIDDLEWARE = [
