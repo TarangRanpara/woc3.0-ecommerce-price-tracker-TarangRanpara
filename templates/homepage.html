@@ -1,0 +1,65 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Price Tracker
+{% endblock %}
+
+{% block body %}
+
+    <p class="text-justify text-center font-weight-bold">
+        This website will inform you via e-mail when your favourite product's price comes below the threshold set by you!
+        <br>
+        you just have to enter your email address, URL of your favourite product and price threshold - <i>rest is upto us!!</i>
+    </p>
+    <br>
+    <p class="text-justify text-center text-success font-weight-bold">
+        Note: it will scrap information from third party site, which is illegal for commercial purposes. do it at your own risk.
+    </p>
+
+    <form method="POST">
+    <div class="container">
+    {% csrf_token %}
+
+        <div class="form-group">
+            <label for="LINK">Product URL</label>
+            <input type="text" class="form-control" id="LINK" placeholder="i.e. www.amazon.com/product1947, etc. " name="link" required>
+        </div>
+
+        <div class="form-group">
+            <label for="SITE">E-Commerce Site</label>
+            <select class="form-control" id="SITE" name="site">
+                  <option value="a">Amazon</option>
+                  <option value="f">Flipkart</option>
+                  <option value="e">Ebay</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="PRICE">Price Threshold</label>
+            <input type="number" class="form-control" id="PRICE" placeholder="i.e. 49999" name="price" required>
+        </div>
+
+        <div class="form-group">
+            <label for="EMAIL">Email address</label>
+            <input type="email" class="form-control" id="EMAIL" aria-describedby="emailHelp" placeholder="i.e. me@site.com" name="email" required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group text-center">
+            <input type="submit" value="submit" class="btn btn-success">
+        </div>
+    </div>
+    </form>
+
+    <br>
+    <hr>
+
+    {% if context %}
+        <p class="text-center text-justify">
+            email: {{ context.email }} <br>
+            link : {{ context.link }}  <br>
+            site : {{ context.site }}  <br>
+            price : {{ context.price }}
+        </p>
+    {% endif %}
+{% endblock %}
