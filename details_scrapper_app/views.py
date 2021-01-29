@@ -167,7 +167,7 @@ def main_page_view(request, *args, **kwargs):
             remark = 'Mail sent.'
             send_mail(from_email,
                       from_pwd,
-                      'tarangranpara1998@gmail.com',
+                      email,
                       'Product Alert', f'Product:{product_name} - \n\n link: {link} \n\nPrice: {scrapped_price}')
 
         else:
