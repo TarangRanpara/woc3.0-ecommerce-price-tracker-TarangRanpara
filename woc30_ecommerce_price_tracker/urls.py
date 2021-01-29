@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+
+    # from here, execution of details_scrapper_app will go ahead
     path('', include('details_scrapper_app.urls')),
     path('admin/', admin.site.urls)
 ]

@@ -2,9 +2,18 @@ from selenium import webdriver
 
 
 class AmazonScrapperChrome:
-    '''
-    Note: if any value fails to be scrapped, functions will return str: 'Failure'
-    '''
+    """
+        Class that scrapes the amazon.in for the provided link
+        if any failure occurs during scraping, getter methods will return string: `failure`
+
+        operating flow:
+            constructor -> init_chrome_window -> set_product_url ->
+            {
+                get_product_name,
+                get_product_price,
+                (get_product_availability)
+            }
+    """
 
     def __init__(self, driver_path):
         self.driver_path = driver_path
@@ -12,16 +21,22 @@ class AmazonScrapperChrome:
         self.url = None
         self.err = None
 
-        # values to be scraped
+        # VALUES TO BE SCRAPPED
         self.product_name = "Failure"
         self.product_price = "Failure"
         self.product_availability = "Failure"
 
+    # OPEN CHROME WINDOW
     def init_chrome_window(self):
         self.driver = webdriver.Chrome(self.driver_path)
 
-
     def process_price(self):
+        """
+            RETURN: STR
+
+            REMOVES CURRENCY SYMBOLS AND COMMAS FROM SCRAPPED PRICES
+            $11,1000 -> 111000
+        """
         if self.product_price == 'Failure':
             return
 
@@ -32,6 +47,7 @@ class AmazonScrapperChrome:
         else:
             self.product_price = amount
 
+    # TO SET PRODUCT URL
     def set_product_url(self, url):
         try:
             self.url = url
@@ -41,6 +57,7 @@ class AmazonScrapperChrome:
             self.err = e
             return False
 
+    # TO SCRAP PRICE
     def get_price(self):
         temp2 = []
         temp = []
@@ -57,6 +74,7 @@ class AmazonScrapperChrome:
 
             return self.product_price
 
+    # TO SCRAP PRODUCT NAME
     def get_product_name(self):
         try:
             temp = self.driver.find_elements_by_xpath('.//*[@id="title"]')
@@ -65,6 +83,7 @@ class AmazonScrapperChrome:
         finally:
             return self.product_name
 
+    # TO SCRAP INFO ABOUT WHETHER PRODUCT IS AVAILABLE OR NOT
     def get_product_availability(self):
         try:
             temp = self.driver.find_elements_by_xpath('//*[@id="availability"]')
@@ -73,8 +92,10 @@ class AmazonScrapperChrome:
         finally:
             return self.product_availability
 
+    # TO CLOSE THE CHROME WINDOW
     def close(self):
         self.driver.close()
+
 
 '''
 scrapper = AmazonScrapperChrome(".//w_driver//chromedriver")

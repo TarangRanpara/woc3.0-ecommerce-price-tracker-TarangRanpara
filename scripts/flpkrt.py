@@ -3,9 +3,18 @@ from selenium import webdriver
 
 class FlipkartScrapperChrome:
 
-    '''
-        Note: if any value fails to be scrapped, functions will return str: 'Failure'
-    '''
+    """
+        Class that scrapes the flipkart.com for the provided link
+        if any failure occurs during scraping, getter methods will return string: `failure`
+
+        operating flow:
+            constructor -> init_chrome_window -> set_product_url ->
+            {
+                get_product_name,
+                get_product_price,
+                (get_product_availability)
+            }
+    """
 
     def __init__(self, driver_path):
         self.driver_path = driver_path
@@ -13,17 +22,19 @@ class FlipkartScrapperChrome:
         self.url = None
         self.err = None
 
-        # values to be scraped
+        # VALUES TO BE SCRAPPED
         self.product_name = "Failure"
         self.product_price = "Failure"
         self.product_availability = "Failure"
 
+    # OPEN CHROME WINDOW
     def init_chrome_window(self):
         self.driver = webdriver.Chrome(self.driver_path)
 
     def str2num(self, num):
         return int(''.join(list(filter(lambda x:x.isdigit(), num))))
 
+    # TO SET PRODUCT URL
     def set_product_url(self, url):
         try:
             self.url = url
@@ -33,6 +44,7 @@ class FlipkartScrapperChrome:
             self.err = e
             return False
 
+    # TO SCRAP PRICE
     def get_price(self):
         try:
             temp = self.driver.find_elements_by_class_name('_25b18c') #_30jeq3 _16Jk6d
@@ -42,6 +54,7 @@ class FlipkartScrapperChrome:
         finally:
             return self.product_price
 
+    # TO SCRAP INFO ABOUT WHETHER PRODUCT IS AVAILABLE OR NOT
     def get_product_name(self):
         try:
             temp = self.driver.find_elements_by_xpath('.//*[@id="container"]/div/div[3]/div[1]/div[2]/div[2]/div/div[1]/h1')
@@ -58,6 +71,7 @@ class FlipkartScrapperChrome:
 
             return self.product_name
 
+    # TO CLOSE THE CHROME WINDOW
     def close(self):
         self.driver.close()
 

@@ -30,7 +30,7 @@
             <select class="form-control" id="SITE" name="site">
                   <option value="a">Amazon</option>
                   <option value="f">Flipkart</option>
-                  <option value="e">Ebay</option>
+                  <option value="s">Snapdeal</option>
             </select>
         </div>
 
@@ -45,8 +45,10 @@
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
 
+
         <div class="form-group text-center">
             <input type="submit" value="submit" class="btn btn-success">
+            <span> Scroll down after submitting</span>
         </div>
     </div>
     </form>
@@ -56,10 +58,13 @@
 
     {% if context %}
         <p class="text-center text-justify">
-            email: {{ context.email }} <br>
-            link : {{ context.link }}  <br>
-            site : {{ context.site }}  <br>
-            price : {{ context.price }}
+            <b>email</b>: {{ context.email }} <br>
+            <b>link</b> : {{ context.link }}  <br>
+            <b>site </b>: {{ context.site }}  <br>
+            <b>price </b>: {{ context.price }}
+
+            <br><br>
+            {{ context.remark }}
         </p>
     {% endif %}
 {% endblock %}
