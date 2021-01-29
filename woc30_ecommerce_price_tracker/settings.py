@@ -117,4 +117,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # for cron job - set interval in seconds
-INTERVAL_SECONDS = 120
+INTERVAL_SECONDS = 10 * 60
