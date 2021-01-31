@@ -1,5 +1,7 @@
 # E-Commerce Price Tracker
 
+[Demo Video](https://drive.google.com/file/d/1goZ0I4NoxuqL-4PGgzOyij96jTd8AvpT/view?usp=sharing) 
+
 When it comes to shopping, most of us regular indian folks are price-conscious and put price as our priority constraint before buying anything. If we decide to buy something, we tend to regularly check its price until it falls within our desired range and this project helps us do exactly that!
 
 This application takes URL of product he/she wants to track price of, his/her desired price threshold and his/her email address. It will send automated mail to the user when price of desired product falls below given threshold. Currently, this application works well with below given sites. 
