@@ -51,6 +51,7 @@ class FlipkartScrapperChrome:
             #print('TEMP', temp[0].text)
             if len(temp):
                 self.product_price = temp[0].text.split('₹')[1]
+                self.product_price = re.sub(r'[^\d]', '', self.product_price)
         finally:
             return self.product_price
 
