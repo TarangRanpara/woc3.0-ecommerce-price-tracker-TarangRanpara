@@ -45,18 +45,18 @@ class SnapdealScrapperChrome:
         try:
             temp = self.driver.find_elements_by_xpath('//*[@id="productOverview"]/div[2]/div/div[1]/div[1]/div[1]/h1')
             if len(temp):
-                self.product_price = temp[0].text
+                self.product_name = temp[0].text
         finally:
-            return self.product_price
+            return self.product_name
 
     # TO SCRAP PRICE
     def get_price(self):
         try:
             temp = self.driver.find_elements_by_xpath('//*[@id="buyPriceBox"]/div[2]/div[1]/div[1]/div[1]/span[1]/span')
             if len(temp):
-                self.product_name = temp[0].text
+                self.product_price = temp[0].text
         finally:
-            return self.product_name
+            return self.product_price
 
     # TO CLOSE THE CHROME WINDOW
     def close(self):
